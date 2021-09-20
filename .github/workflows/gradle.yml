@@ -21,6 +21,7 @@ jobs:
             cd github-action-test
             git pull origin master
             cd demo
+            chmod +x gradlew
             ./gradlew clean build
             cd build/lib
             nohup java -jar *.jar &
