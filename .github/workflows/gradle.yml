@@ -14,9 +14,9 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOSTNAME }}
-          usename: ${{ secrets.USER_NAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          KEY: ${{ secrets.PRIVATE_KEY }}
           script: cd github-action-test
 # jobs:
 #   build:
