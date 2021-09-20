@@ -17,7 +17,14 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           KEY: ${{ secrets.PRIVATE_KEY }}
-          script: cd github-action-test
+          script: |
+            cd github-action-test
+            git pull origin master
+            cd demo
+            ./gradlew clean build
+            cd build/lib
+            nohup java -jar *.jar &
+
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest
