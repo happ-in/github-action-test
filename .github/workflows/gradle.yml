@@ -16,7 +16,7 @@ jobs:
         with:
           host: ${{ secrets.HOSTNAME }}
           usename: ${{ secrets.USER_NAME }}
-          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          key: ${{ secrets.PRIVATE_KEY }}
           script: cd github-action-test
 # jobs:
 #   build:
