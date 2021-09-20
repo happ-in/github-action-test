@@ -23,8 +23,8 @@ jobs:
             cd demo
             chmod +x gradlew
             ./gradlew clean build
-            cd build/lib
-            nohup java -jar *.jar &
+            cd build/libs
+            nohup java -jar demo-0.0.1-SNAPSHOT.jar &
 
 # jobs:
 #   build:
