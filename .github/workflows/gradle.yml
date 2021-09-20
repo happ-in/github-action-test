@@ -20,6 +20,4 @@ jobs:
 #           distribution: 'adopt'
 
       - name: Build with Gradle
-        run: |
-          cd demo
-          ./gradlew build
+        run: ./gradlew build
