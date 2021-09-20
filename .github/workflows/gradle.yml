@@ -8,47 +8,38 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    run-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTNAME }}
+          usename: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          script: cd github-action-test
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-      - name: Build the docker_compose
-        run: docker-compose up -d --build
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Buid the application
-        run: docker-compose exec -T counter_app npm run build
+#       - name: Set up JDK 11
+#         uses: actions/setup-java@v2
+#         with:
+#           java-version: 11
+#           distribution: "adopt"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-20.04
+#       - name: Validate Gradle wrapper
+#         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
 
-    steps:
-      - uses: actions/checkout@v2
+#       - name: Grant execute permission for gradlew
+#         run: |
+#           cd demo
+#           chmod +x gradlew
 
-      # - name: Set up JDK 11
-      #   uses: actions/setup-java@v2
-      #   with:
-      #     java-version: 11
-      #     distribution: "adopt"
-
-      # - name: Validate Gradle wrapper
-      #   uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-
-      # - name: Grant execute permission for gradlew
-      #   run: |
-      #     cd demo
-      #     chmod +x gradlew
-
-      # - name: Build with Gradle
-      #   run: |
-      #     cd demo
-      #     ./gradlew clean build
-
-      - name: Deploy in EC2
-        env:
-          PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-          HOSTNAME: ${{ secrets.HOSTNAME  }}
-          USER_NAME: ${{ secrets.USER_NAME  }}
-
-        run: ssh -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} ${USER_NAME}@${HOSTNAME}
+#       - name: Build with Gradle
+#         run: |
+#           cd demo
+#           ./gradlew clean build
