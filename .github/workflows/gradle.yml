@@ -40,12 +40,12 @@ jobs:
 
         run: |
           ssh -i ${PRIVATE_KEY} ${USER_NAME}@${HOSTNAME}
-          cd /home/ubuntu/github-action-test
-          git checkout main
-          git fetch --all
-          git reset --hard origin/main
-          git pull origin main
-          cd demo
-          ./gradlew clean build
-          cd build/lib
-          nohup java -jar *.jar &
+          # cd /home/ubuntu/github-action-test
+          # git checkout main
+          # git fetch --all
+          # git reset --hard origin/main
+          # git pull origin main
+          # cd demo
+          # ./gradlew clean build
+          # cd build/lib
+          # nohup java -jar *.jar &
